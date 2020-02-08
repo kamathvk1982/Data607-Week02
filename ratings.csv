@@ -1,42 +1,42 @@
-1,"Birds of Prey",1,"ABC","5"
-5,"Avengers: Endgame",1,"ABC","5"
-2,"The Irishman",1,"ABC","4"
-6,"Parasite",1,"ABC","5"
-3,"Knives Out",1,"ABC","4"
-4,"Once Upon a Time in Hollywood",1,"ABC","5"
-1,"Birds of Prey",2,"XYZ","4"
-2,"The Irishman",2,"XYZ","4"
-6,"Parasite",2,"XYZ","5"
-5,"Avengers: Endgame",2,"XYZ","5"
-3,"Knives Out",2,"XYZ","4"
-4,"Once Upon a Time in Hollywood",2,"XYZ","5"
-1,"Birds of Prey",3,"YYY","4"
-4,"Once Upon a Time in Hollywood",3,"YYY","4"
-3,"Knives Out",3,"YYY","4"
+1,"Birds of Prey",1,"ABC",5
+5,"Avengers: Endgame",1,"ABC",5
+2,"The Irishman",1,"ABC",4
+6,"Parasite",1,"ABC",5
+3,"Knives Out",1,"ABC",4
+4,"Once Upon a Time in Hollywood",1,"ABC",5
+1,"Birds of Prey",2,"XYZ",4
+2,"The Irishman",2,"XYZ",4
+6,"Parasite",2,"XYZ",5
+5,"Avengers: Endgame",2,"XYZ",5
+3,"Knives Out",2,"XYZ",4
+4,"Once Upon a Time in Hollywood",2,"XYZ",5
+1,"Birds of Prey",3,"YYY",4
+4,"Once Upon a Time in Hollywood",3,"YYY",4
+3,"Knives Out",3,"YYY",4
 6,"Parasite",3,"YYY",\N
 2,"The Irishman",3,"YYY",\N
-5,"Avengers: Endgame",3,"YYY","3"
-1,"Birds of Prey",4,"ZZZ","5"
+5,"Avengers: Endgame",3,"YYY",3
+1,"Birds of Prey",4,"ZZZ",5
 6,"Parasite",4,"ZZZ",\N
-3,"Knives Out",4,"ZZZ","5"
+3,"Knives Out",4,"ZZZ",5
 2,"The Irishman",4,"ZZZ",\N
-4,"Once Upon a Time in Hollywood",4,"ZZZ","4"
-5,"Avengers: Endgame",4,"ZZZ","5"
-1,"Birds of Prey",5,"POP","3"
-4,"Once Upon a Time in Hollywood",5,"POP","5"
-3,"Knives Out",5,"POP","4"
-2,"The Irishman",5,"POP","5"
-5,"Avengers: Endgame",5,"POP","3"
+4,"Once Upon a Time in Hollywood",4,"ZZZ",4
+5,"Avengers: Endgame",4,"ZZZ",5
+1,"Birds of Prey",5,"POP",3
+4,"Once Upon a Time in Hollywood",5,"POP",5
+3,"Knives Out",5,"POP",4
+2,"The Irishman",5,"POP",5
+5,"Avengers: Endgame",5,"POP",3
 6,"Parasite",5,"POP",\N
-4,"Once Upon a Time in Hollywood",6,"XXX","4"
+4,"Once Upon a Time in Hollywood",6,"XXX",4
 2,"The Irishman",6,"XXX",\N
 5,"Avengers: Endgame",6,"XXX",\N
 1,"Birds of Prey",6,"XXX",\N
-3,"Knives Out",6,"XXX","4"
+3,"Knives Out",6,"XXX",4
 6,"Parasite",6,"XXX",\N
-4,"Once Upon a Time in Hollywood",7,"LMN","4"
+4,"Once Upon a Time in Hollywood",7,"LMN",4
 2,"The Irishman",7,"LMN",\N
-5,"Avengers: Endgame",7,"LMN","5"
-1,"Birds of Prey",7,"LMN","5"
-3,"Knives Out",7,"LMN","4"
+5,"Avengers: Endgame",7,"LMN",5
+1,"Birds of Prey",7,"LMN",5
+3,"Knives Out",7,"LMN",4
 6,"Parasite",7,"LMN",\N

@@ -58,7 +58,7 @@ DROP TABLE IF EXISTS `ratings`;
 CREATE TABLE `ratings` (
   `movie_id` integer(10) NOT NULL ,
   `user_id` integer(10) NOT NULL,
-  `rating` varchar(3) ,
+  `rating` integer(1) ,
   PRIMARY KEY (`movie_id`,`user_id`),
   FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
