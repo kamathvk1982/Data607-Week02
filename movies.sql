@@ -72,12 +72,13 @@ CREATE TABLE `ratings` (
 
 LOCK TABLES `movies` WRITE;
 
-INSERT INTO `movies` VALUES (1,'Birds of Prey','2020','Action;Adventure;Crime');
-INSERT INTO `movies` VALUES (2,'The Irishman','2019','Biography;Crime;Drama');
-INSERT INTO `movies` VALUES (3,'Knives Out','2019','Comedy;Crime;Drama');
-INSERT INTO `movies` VALUES (4,'Once Upon a Time in Hollywood','2019','Comedy;Drama');
-INSERT INTO `movies` VALUES (5,'Avengers: Endgame','2019','Action;Adventure;Drama');
-INSERT INTO `movies` VALUES (6,'Parasite','2019','Comedy;Crime;Drama');
+INSERT INTO `movies` VALUES (1,'Birds of Prey','2020','Action');
+INSERT INTO `movies` VALUES (2,'The Irishman','2019','Drama');
+INSERT INTO `movies` VALUES (3,'Knives Out','2019','Comedy');
+INSERT INTO `movies` VALUES (4,'Once Upon a Time in Hollywood','2019','Comedy');
+INSERT INTO `movies` VALUES (5,'Avengers: Endgame','2019','Action');
+INSERT INTO `movies` VALUES (6,'Parasite','2019','Comedy');
+
 
 UNLOCK TABLES;
 
@@ -104,13 +105,13 @@ UNLOCK TABLES;
 
 LOCK TABLES `ratings` WRITE;
 
-INSERT INTO `ratings` VALUES (1,1,'5');INSERT INTO `ratings` VALUES (2,1,'4');INSERT INTO `ratings` VALUES (3,1,'4');INSERT INTO `ratings` VALUES (4,1,'5');INSERT INTO `ratings` VALUES (5,1,'5');INSERT INTO `ratings` VALUES (6,1,'5');
-INSERT INTO `ratings` VALUES (1,2,'4');INSERT INTO `ratings` VALUES (2,2,'4');INSERT INTO `ratings` VALUES (3,2,'4');INSERT INTO `ratings` VALUES (4,2,'5');INSERT INTO `ratings` VALUES (5,2,'5');INSERT INTO `ratings` VALUES (6,2,'5');
-INSERT INTO `ratings` VALUES (1,3,'5');INSERT INTO `ratings` VALUES (2,3,'N/A');INSERT INTO `ratings` VALUES (3,3,'5');INSERT INTO `ratings` VALUES (4,3,'4');INSERT INTO `ratings` VALUES (5,3,'5');INSERT INTO `ratings` VALUES (6,3,'N/A');
-INSERT INTO `ratings` VALUES (1,4,'5');INSERT INTO `ratings` VALUES (2,4,'N/A');INSERT INTO `ratings` VALUES (3,4,'5');INSERT INTO `ratings` VALUES (4,4,'4');INSERT INTO `ratings` VALUES (5,4,'5');INSERT INTO `ratings` VALUES (6,4,'N/A');
-INSERT INTO `ratings` VALUES (1,5,'3');INSERT INTO `ratings` VALUES (2,5,'5');INSERT INTO `ratings` VALUES (3,5,'4');INSERT INTO `ratings` VALUES (4,5,'5');INSERT INTO `ratings` VALUES (5,5,'3');INSERT INTO `ratings` VALUES (6,5,'N/A');
-INSERT INTO `ratings` VALUES (1,6,'N/A');INSERT INTO `ratings` VALUES (2,6,'N/A');INSERT INTO `ratings` VALUES (3,6,'5');INSERT INTO `ratings` VALUES (4,6,'5');INSERT INTO `ratings` VALUES (5,6,'N/A');INSERT INTO `ratings` VALUES (6,6,'N/A');
-INSERT INTO `ratings` VALUES (1,7,'5');INSERT INTO `ratings` VALUES (2,7,'N/A');INSERT INTO `ratings` VALUES (3,7,'4');INSERT INTO `ratings` VALUES (4,7,'4');INSERT INTO `ratings` VALUES (5,7,'5');INSERT INTO `ratings` VALUES (6,7,'N/A');
+INSERT INTO `ratings` VALUES (1,1,5);INSERT INTO `ratings` VALUES (2,1,4);INSERT INTO `ratings` VALUES (3,1,4);INSERT INTO `ratings` VALUES (4,1,5);INSERT INTO `ratings` VALUES (5,1,5);INSERT INTO `ratings` VALUES (6,1,5);
+INSERT INTO `ratings` VALUES (1,2,4);INSERT INTO `ratings` VALUES (2,2,4);INSERT INTO `ratings` VALUES (3,2,4);INSERT INTO `ratings` VALUES (4,2,5);INSERT INTO `ratings` VALUES (5,2,5);INSERT INTO `ratings` VALUES (6,2,5);
+INSERT INTO `ratings` VALUES (1,3,5);INSERT INTO `ratings` VALUES (2,3,NULL);INSERT INTO `ratings` VALUES (3,3,5);INSERT INTO `ratings` VALUES (4,3,4);INSERT INTO `ratings` VALUES (5,3,5);INSERT INTO `ratings` VALUES (6,3,NULL);
+INSERT INTO `ratings` VALUES (1,4,5);INSERT INTO `ratings` VALUES (2,4,NULL);INSERT INTO `ratings` VALUES (3,4,5);INSERT INTO `ratings` VALUES (4,4,4);INSERT INTO `ratings` VALUES (5,4,5);INSERT INTO `ratings` VALUES (6,4,NULL);
+INSERT INTO `ratings` VALUES (1,5,3);INSERT INTO `ratings` VALUES (2,5,5);INSERT INTO `ratings` VALUES (3,5,4);INSERT INTO `ratings` VALUES (4,5,5);INSERT INTO `ratings` VALUES (5,5,3);INSERT INTO `ratings` VALUES (6,5,NULL);
+INSERT INTO `ratings` VALUES (1,6,NULL);INSERT INTO `ratings` VALUES (2,6,NULL);INSERT INTO `ratings` VALUES (3,6,5);INSERT INTO `ratings` VALUES (4,6,5);INSERT INTO `ratings` VALUES (5,6,NULL);INSERT INTO `ratings` VALUES (6,6,NULL);
+INSERT INTO `ratings` VALUES (1,7,5);INSERT INTO `ratings` VALUES (2,7,NULL);INSERT INTO `ratings` VALUES (3,7,4);INSERT INTO `ratings` VALUES (4,7,4);INSERT INTO `ratings` VALUES (5,7,5);INSERT INTO `ratings` VALUES (6,7,NULL);
 
 UNLOCK TABLES;
 
