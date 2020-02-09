@@ -1,0 +1,165 @@
+---
+title: "Data607-Week02 Assignment - Assignment - SQL and R"
+author: "Vinayak Kamath"
+date: "2/7/2020"
+output: 
+  pdf_document:
+    extra_dependencies:
+    - geometry
+    - multicol
+    - multirow
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("dplyr")          ## load
+```
+
+## Setup Instruction for the DB creation and Data insertion: ##
+
+Here are the instructions for downloading the ''movies'' database.  'This assumes that you have already installed MySQL, including MySQL workbench'.
+
+1. Download the attached movies.sql ^[1]^ file from the GIT repository and copy the files to your local machine.
+2. Launch MySQL workbench and Create a new MySQL schema (database) called ''movies''
+3. Make the ''movies'' database your default schema and Open the script movies.sql;  please modify the LOAD command in the script to point to the correct file location.
+4. Verify that records were successfully loaded.  
+
+
+
+
+## Instruction for the CSV file generation: ##
+
+Here are the instructions for exporting .CSV file that contains the data for movies[movies.csv], users[users.csv], ratings[ratings.csv] and upcoming_movies[upcoming_movies.csv].  'This assumes that you have already installed MySQL, including MySQL workbench'.
+
+1. Download the attached GenerateMoviesRatingsCSV.sql ^[2]^  file from the GIT repository and copy the files to your local machine.
+2. Launch MySQL workbench and Make the ''movies'' database your default schema and Open the script GenerateMoviesRatingsCSV.sql;  please modify the OUTFILE command in the script to point to the correct file location.
+3. Verify that the four CSV files were successfully generated.
+4. If the files are not generated locally then pls use the mentioned link to the GIT repository to get the already generated four CSV files. ^[3]^       
+  
+  
+
+
+
+  
+    
+^[1]^  Git Repository link for movies.sql file: https://raw.githubusercontent.com/kamathvk1982/Data607-Week02/master/movies.sql  
+^[2]^  Git Repository link for GenerateMoviesRatingsCSV.sql file: https://raw.githubusercontent.com/kamathvk1982/Data607-Week02/master/GenerateMoviesRatingsCSV.sql  
+^[3]^  GIT Repository link for .CSV file that contains the data for movies[movies.csv], users[users.csv], ratings[ratings.csv] and upcoming_movies[upcoming_movies.csv] are https://raw.githubusercontent.com/kamathvk1982/Data607-Week02/master/movies.csv ; https://raw.githubusercontent.com/kamathvk1982/Data607-Week02/master/users.csv  ; https://raw.githubusercontent.com/kamathvk1982/Data607-Week02/master/ratings.csv  and https://raw.githubusercontent.com/kamathvk1982/Data607-Week02/master/upcoming_movies.csv   
+  
+
+
+--------------------------------------------------------------------------------
+
+\clearpage
+
+## Loading the Information from .CSV to R Data Frame: ##
+
+
+```{r}
+# First, set your working directory to fodler where the RMD and .CSV files are kept; Please modify the path to point to the correct file location on our locale:
+setwd("~/Vinayak/CUNY/Data607/Assignment/Week02/") 
+  
+# Import the data files into individual Datfrae and get summary of the Data Frames:
+movies.df <- read.csv(file = 'movies.csv', header = F , sep = ',' )
+users.df <- read.csv(file = 'users.csv', header = F , sep = ',' )
+ratings.df <- read.csv(file = 'ratings.csv', header = F , sep = ',' )
+upcoming.movies.df <- read.csv(file = 'upcoming_movies.csv', header = F , sep = ',' )
+  
+#Naming the Columns:
+names(movies.df) <- c('Id','MovieName','YearOfRelease','Genre')
+names(users.df) <- c('Id','UserName','Age')
+names(ratings.df) <- c('MovieId','MovieName','UserId','UserName','Ratings')
+names(upcoming.movies.df) <- c('Id','MovieName','YearOfRelease','Genre', 'AutoRank')
+
+  
+str(movies.df)
+str(users.df)
+str(ratings.df)
+str(upcoming.movies.df)  
+```  
+  
+--------------------------------------------------------------------------------
+
+
+## Analysis on the Loaded DataSet: ##
+
+#### 1. Movie With the highest average Rating with ignoring "N/A" ratings among all Users:
+*Observation*: "Parasite" is on the Top with two users viewing and rating it at 5 each   
+```{r}
+ratings.df %>%
+  filter(Ratings !=  "")  %>%
+  group_by(MovieId, MovieName) %>%
+  summarize(mean_rank = mean(Ratings)) %>%
+  arrange(desc(mean_rank))
+```
+
+
+
+#### 2. Movie With the highest average Rating with treating "N/A" rating as default 2 [Missing Data Handling] ratings among all Users :
+*Observation*: "Once Upon a Time in Hollywood" leads as the movie was seen by all users and had ratings of 4 and 5 only. "Parasite"  landed on the bottom as not many have seen it. Using a Default rating helped us to standardize the average ratings for the movies.  
+
+```{r}
+ratings.df %>%
+  replace(is.na(.), 1)%>%
+  group_by(MovieId, MovieName) %>%
+  summarize(mean_rank = mean(Ratings, na.rm= TRUE)) %>%
+  arrange(desc(mean_rank))
+```
+
+
+
+#### 3. Genre based Recommendations for each User:
+*Observation*: For each user we can take the top ranked movies by them and by taking the top movie Genre we can recommend to them similar rating Genre movies having standardized high rating rounded to the nearer larger integer.
+```{r}
+#Step 1: Get the Standardized Rating Data Frame
+standardized.ratings.df <- ratings.df %>%
+  replace(is.na(.), 1)%>%
+  group_by(MovieId, MovieName) %>%
+  summarize(mean_rank = ceiling (mean(Ratings, na.rm= TRUE))) %>%
+  arrange(desc(mean_rank))
+
+#Step 2: Join with Movies data frame to get the year and genre into the Standardized Rating Data Frame
+standardized.ratings.df <- left_join(standardized.ratings.df, movies.df, by = c("MovieId" = "Id", "MovieName" ="MovieName"))
+standardized.ratings.df
+
+#Step 3: Get Users Top rated Genre
+users.topgenre.df <- ratings.df %>%
+  filter(Ratings !=  "")  %>%
+  group_by(UserId, UserName) %>%
+  summarize(top_rank = max(Ratings))  
+
+users.topgenre.df <- left_join(users.topgenre.df, ratings.df, by = c("UserId" = "UserId", "UserName" ="UserName", "top_rank"="Ratings"))
+users.topgenre.df <- left_join(users.topgenre.df, movies.df, by = c("MovieId" = "Id", "MovieName" ="MovieName"))
+users.topgenre.df <- subset(users.topgenre.df, select = c("UserId","UserName","Genre","top_rank"))
+
+users.topgenre.df <- unique(users.topgenre.df)
+users.topgenre.df
+``` 
+
+
+
+***3.a. Recommendations for user 3 YYY  for Upcoming Movies:***
+```{r}
+user3.recommendations <- subset(users.topgenre.df,  users.topgenre.df$UserId==3,  select = c("UserId","UserName","Genre","top_rank") , drop = FALSE)
+user3.recommendations <- inner_join(upcoming.movies.df,user3.recommendations, by =c("Genre" ="Genre" , "AutoRank" = "top_rank" ) )
+user3.recommendations
+
+```
+
+
+***3.b. Recommendations for user 5 POP  for Upcoming Movies:***
+```{r}
+user5.recommendations <- subset(users.topgenre.df,  users.topgenre.df$UserId==5,  select = c("UserId","UserName","Genre","top_rank") , drop = FALSE)
+user5.recommendations <- inner_join(upcoming.movies.df,user5.recommendations, by =c("Genre" ="Genre" , "AutoRank" = "top_rank" ) )
+user5.recommendations
+
+```
+
+  
+  
+--------------------------------------------------------------------------------
+
+
+\clearpage
